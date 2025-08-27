@@ -1,2 +1,9 @@
-<h1>Parks#index</h1>
-<p>Find me in app/views/parks/index.html.erb</p>
+<h1>公園</h1>
+<% @parks.each do |park| %>
+<div>
+  <%= image_tag park.get_image %>
+  <p>投稿ユーザー画像<p>
+  <p>公園名 : <%= park.park_name %></p>
+  <p>説明 : <%= park.introduction %></p>
+</div>
+<% end %>

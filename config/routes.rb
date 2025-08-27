@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "homes#top"
 
-  resources :parks, only: [:new, :index, :show, :edit]
+  resources :parks, only: [:new, :create, :index, :show, :edit]
 
   get "/homes/about", to: "homes#about", as: 'about'
  
