@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
 
   resources :parks, only: [:new, :create, :index, :show, :edit]
+  resources :posts, only: [:new, :create, :index, :show, :edit]
 
   get "/homes/about", to: "homes#about", as: 'about'
  

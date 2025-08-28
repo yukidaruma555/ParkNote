@@ -2,6 +2,7 @@ class Park < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
+  has_many :posts, dependent: :destroy
 
   def get_image
     unless image.attached?

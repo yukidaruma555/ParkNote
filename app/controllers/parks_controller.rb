@@ -11,10 +11,11 @@ class ParksController < ApplicationController
   end 
 
   def index
-    @park = Park.all
+    @parks = Park.all
   end
 
   def show
+    @park = Park.find(params[:id])
   end
 
   def edit

@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   has_one_attached :image
   has_many :parks
+  has_many :posts, dependent: :destroy
   
 end
