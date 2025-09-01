@@ -16,9 +16,18 @@ class ParksController < ApplicationController
 
   def show
     @park = Park.find(params[:id])
+    @post = Post.new
+    @posts = Post.all
   end
 
   def edit
+    @park = Park.find(params[:id])
+  end
+
+  def update
+    park = Park.find(params[:id])
+    park.update(park_params)
+    redirect_to park_path(park.id)
   end
 
   private

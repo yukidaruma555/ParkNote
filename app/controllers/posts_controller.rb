@@ -6,13 +6,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id 
-
-    if @post.save
+    @post.rating = 5.0 #TODO
+    @post.save!
       redirect_to posts_path
-    else
-      flash[:error] = "投稿の保存に失敗しました。"
-      render 'new'
-    end
   end 
 
   def index
@@ -20,6 +16,7 @@ class PostsController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
@@ -28,7 +25,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :image, :body, :park_id)
+    params.require(:post).permit(:title, :image, :body, :park_id, :rating)
   end
 
 end

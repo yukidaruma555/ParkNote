@@ -52,12 +52,12 @@ ActiveRecord::Schema.define(version: 2025_08_28_064029) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "park_id", null: false
-    t.string "title", null: false
-    t.text "body", null: false
-    t.integer "rating", null: false
-    t.date "visit_day", null: false
+    t.integer "user_id"
+    t.integer "park_id"
+    t.string "title"
+    t.text "body"
+    t.integer "rating"
+    t.date "visit_day"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

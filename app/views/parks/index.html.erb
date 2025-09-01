@@ -2,12 +2,12 @@
 <% @parks.each do |park| %>
 <div>
   <%= link_to park_path(park.id) do %>
-    <%= image_tag park.get_image %>
-  <% end %>
+  <%= image_tag park.get_image %>
+ <% end %>
   <p>投稿ユーザー画像<p>
   <p>公園名 : <%= park.park_name %></p>
   <p>説明 : <%= park.introduction %></p>
-  <P>郵便番号 : <%= park.postal_code %></p>
+  <p>郵便番号 : <%= park.postal_code %></p>
   <p>住所 : <%= park.address %></p>
 </div>
 <% end %>
