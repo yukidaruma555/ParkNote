@@ -10,6 +10,10 @@
   <p>説明 : <%= @park.introduction %></p>
   <p>郵便番号 : <%= @park.postal_code %></p>
   <p>住所 : <%= @park.address %></p>
+  <p><strong>遊具 : </strong>
+   <%= @park.equipment.pluck(:name).join("、") %></p>
+  <p><strong>設備 : </strong>
+   <%= @park.facility.pluck(:name).join("、") %></p>
   <p>投稿ユーザー画像 : </p>
   <p>ユーザーネーム : <%= @park.user.name %><p/>
   <p>投稿日 : <%= @park.created_at.strftime('%Y/%m/%d') %></p>

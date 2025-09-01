@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_08_28_064029) do
+ActiveRecord::Schema.define(version: 2025_09_01_144305) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,38 @@ ActiveRecord::Schema.define(version: 2025_08_28_064029) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "facilities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "park_equipments", force: :cascade do |t|
+    t.integer "park_id", null: false
+    t.integer "equipment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["equipment_id"], name: "index_park_equipments_on_equipment_id"
+    t.index ["park_id", "equipment_id"], name: "index_park_equipments_on_park_id_and_equipment_id", unique: true
+    t.index ["park_id"], name: "index_park_equipments_on_park_id"
+  end
+
+  create_table "park_facilities", force: :cascade do |t|
+    t.integer "park_id", null: false
+    t.integer "facility_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["facility_id"], name: "index_park_facilities_on_facility_id"
+    t.index ["park_id", "facility_id"], name: "index_park_facilities_on_park_id_and_facility_id", unique: true
+    t.index ["park_id"], name: "index_park_facilities_on_park_id"
   end
 
   create_table "parks", force: :cascade do |t|
@@ -77,4 +109,8 @@ ActiveRecord::Schema.define(version: 2025_08_28_064029) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "park_equipments", "equipment"
+  add_foreign_key "park_equipments", "parks"
+  add_foreign_key "park_facilities", "facilities"
+  add_foreign_key "park_facilities", "parks"
 end

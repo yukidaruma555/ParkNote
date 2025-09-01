@@ -16,6 +16,22 @@
 
   <h4>住所</h4>
   <%= f.text_field :address %>
+
+  <div class="field">
+    <label>遊具（複数選択可）</label>
+      <%= f.collection_check_boxes(:equipment_ids, Equipment.order(:id), :id, :name) do |b| %>
+          <%= b.check_box %>
+          <%= b.label %>
+      <% end %>
+  </div>
+
+  <div class="field">
+    <label>設備（複数選択可）</label>
+      <%= f.collection_check_boxes(:facility_ids, Facility.order(:id), :id, :name) do |b| %>
+          <%= b.check_box %>
+          <%= b.label %>
+      <% end %>
+  </div>
   
   <%= f.submit '保存' %>
 
