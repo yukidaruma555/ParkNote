@@ -10,8 +10,10 @@
   <p>郵便番号 : <%= park.postal_code %></p>
   <p>住所 : <%= park.address %></p>
   <p><strong>遊具 : </strong>
-  <%= park.equipment.pluck(:name).join("、") %></p>
+  <%= park.equipments.pluck(:name).join("、") %></p>
   <p><strong>遊具 : </strong>
-  <%= park.facility.pluck(:name).join("、") %></p>
+  <%= park.facilities.pluck(:name).join("、") %></p>
+  <p><strong>年齢層 : </strong>
+  <%= park.age_groups.pluck(:name).join("、") %></p>
 </div>
 <% end %>

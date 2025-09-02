@@ -32,6 +32,14 @@
           <%= b.label %>
       <% end %>
   </div>
+
+  <div class="filed">
+    <label>年齢層（複数選択可）</label>
+      <%= f.collection_check_boxes(:age_group_ids, AgeGroup.order(:id), :id, :name) do |b| %>
+          <%= b.check_box %>
+          <%= b.label %>
+      <% end %>
+  </div>
   
   <%= f.submit '保存' %>
 

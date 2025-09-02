@@ -30,6 +30,16 @@
       </span>
     <% end %>
     </div>
+
+    <div class="field">
+    <label>年齢層（複数選択可）</label>
+    <%= f.collection_check_boxes(:age_group_ids, AgeGroup.all, :id, :name) do |b| %>
+      <span class="facility-item">
+        <%= b.check_box %>
+        <%= b.label %>
+      </span>
+    <% end %>
+    </div>
     
     <%= f.submit '登録' %>
 <% end %>

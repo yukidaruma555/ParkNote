@@ -15,3 +15,7 @@ end
 %w[洋式トイレ 和式トイレ 多機能トイレ おむつ交換代 手洗い場 ベンチ 屋根付き休憩所 駐車場].each do |name|
   Facility.find_or_create_by!(name: name)
 end
+
+%w[乳幼児(0-2) 幼児(3-5) 小学生].each do |name|
+  AgeGroup.find_or_create_by!(name: name)
+end
