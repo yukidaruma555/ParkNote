@@ -7,7 +7,7 @@ class ParksController < ApplicationController
     @park = Park.new(park_params)
     @park.user_id = current_user.id
     @park.save
-    redirect_to parks_path
+    redirect_to park_path(@park)
   end 
 
   def index
@@ -17,7 +17,7 @@ class ParksController < ApplicationController
   def show
     @park = Park.find(params[:id])
     @post = Post.new
-    @posts = Post.all
+    @posts = @park.posts.order(created_at: :desc)
   end
 
   def edit

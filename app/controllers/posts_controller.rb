@@ -6,9 +6,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id 
-    @post.rating = 5.0 #TODO
+    @post.rating = post_params["rating"]
     @post.save!
-      redirect_to posts_path
+    redirect_to park_path(@post.park_id)
   end 
 
   def index

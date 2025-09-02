@@ -1,0 +1,18 @@
+<h1>Users 詳細</h1>
+<div>
+<h3><%= @user.name %></h3>
+<%= image_tag @user.get_profile_image(100,100) %>
+</div>
+</div>
+
+<% @posts.each do |post| %>
+  <div>
+    <%= link_to post_path(post.id) do %>
+      <%= image_tag post_image.get_image %>
+    <% end %>
+    <p>投稿ユーザー画像：<%= image_tag post.user.get_profile_image(100,100) %></p>
+    <p>タイトル：<%= post.title %></p>
+    <p>本文：<%= post.body %></p>
+    <p>ユーザーネーム：<%= post.user.name %></p>
+  </div>
+  <% end %>
