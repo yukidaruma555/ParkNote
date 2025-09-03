@@ -2,7 +2,7 @@
 <% @posts.each do |post| %>
   <div>
     <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_image %>
+    <%= image_tag post.get_image, size: "300x300" %>
     <% end %> 
     <p>投稿ユーザー画像</p>
     <p>タイトル : <%= post.title %></p>

@@ -1,3 +1,8 @@
+<main>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+
 <h1>公園詳細</h1>
 
 <div>
@@ -10,7 +15,7 @@
   <p>説明 : <%= @park.introduction %></p>
   <p>郵便番号 : <%= @park.postal_code %></p>
   <p>住所 : <%= @park.address %></p>
-  <p><strong>遊具 : </strong>
+  <p><strong>遊具 : </strong>kouenn
    <%= @park.equipments.pluck(:name).join("、") %></p>
   <p><strong>設備 : </strong>
    <%= @park.facilities.pluck(:name).join("、") %></p>
@@ -58,14 +63,20 @@ $(document).on('turbolinks:load', function() {
   <%= f.submit '投稿' %>
 <% end %>
 
+</div>
+<div class="col-md-8 offset-md-1">
 
 <h1><%= @park.park_name %> 投稿一覧</h1>
 <% @posts.each do |post| %>
   <div>
-    <%= image_tag post.get_image %>
+    <%= image_tag post.get_image, size: "300x300" %>
     <p>投稿ユーザー画像</p>
     <p>タイトル : <%= post.title %></p>
     <p>本文 : <%= post.body %></p>
     <p>ユーザーネーム : <%= post.user.name %></p>
   </div>
 <% end %>
+</div>
+</div>
+</div>
+</main>

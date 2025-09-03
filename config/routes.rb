@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :parks, only: [:new, :create, :index, :show, :edit, :update]
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-  resources :users, only: [:show, :edit]
+  resources :users, only: [:show, :edit, :update]
 
   get "/homes/about", to: "homes#about", as: 'about'
  

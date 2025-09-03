@@ -7,7 +7,7 @@ class ParksController < ApplicationController
     @park = Park.new(park_params)
     @park.user_id = current_user.id
     @park.save
-    redirect_to park_path(@park)
+    redirect_to parks_path
   end 
 
   def index
