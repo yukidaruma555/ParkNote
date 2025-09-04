@@ -1,17 +1,26 @@
-<h1>投稿編集画面</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
-  <%= form_with model: @post do |f| %>
+      <h1>投稿の編集</h1>
+        <%= form_with model: @post do |f| %>
+          <div class="form-group">
+           <label for="photo">Photo</label><br>
+           <%= f.file_field :image, accept: "image/*" %>
+          </div>
+          <div class="form-group">
+           <label for="park_title">Title</label><br>
+           <%= f.text_field :title %>
+          </div>
+          <div class="form-group">
+            <label for="park_body">Body</label><br>
+            <%= f.text_area :body %>
+          </div>
+          <div class="form-group">
+             <%= f.submit 'Update post' %>
+          </div>
 
-     <h4>画像</h4>
-    <%= f.file_field :image, accept: "image/*" %>
-
-
-    <h4>タイトル</h4>
-    <%= f.text_field :title %>
-
-    <h4>本文</h4>
-    <%= f.text_area :body %>
-
-    <%= f.submit '保存' %>
-
-  <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

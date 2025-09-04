@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/e71241d1d0.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
    <header>
+     <nav class="navber navbar-expand-lg navber-dark bg-green">
+       <div class="container">
      <% if user_signed_in? %>
        <li>
          <%= link_to "公園登録", new_park_path %>
@@ -36,6 +38,8 @@
         <%= link_to "ログイン", new_user_session_path %>
       </li>
     <% end %>
+      </div>
+    </nav>
   </header>
     <%= yield %>
   </body>

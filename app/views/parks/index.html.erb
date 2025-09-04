@@ -1,19 +1,42 @@
-<h1>登録公園一覧</h1>
-<% @parks.each do |park| %>
-<div>
-  <%= link_to park_path(park.id) do %>
-  <%= image_tag park.get_image, size: "300x300" %>
- <% end %>
-  <p>投稿ユーザー画像<p>
-  <p>公園名 : <%= park.park_name %></p>
-  <p>説明 : <%= park.introduction %></p>
-  <p>郵便番号 : <%= park.postal_code %></p>
-  <p>住所 : <%= park.address %></p>
-  <p><strong>遊具 : </strong>
-  <%= park.equipments.pluck(:name).join("、") %></p>
-  <p><strong>遊具 : </strong>
-  <%= park.facilities.pluck(:name).join("、") %></p>
-  <p><strong>年齢層 : </strong>
-  <%= park.age_groups.pluck(:name).join("、") %></p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+  
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>登録公園一覧</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @parks.each do |park| %>
+            <tr>
+            <td>
+             <%= link_to park_path(park.id) do %>
+             <%= image_tag park.get_image, size: "300x300" %>
+             <% end %></td>
+            <td>
+             <h4>公園名 : <%= park.park_name %></h4>
+             <p>説明 : <%= park.introduction %></p>
+             <p>郵便番号 : <%= park.postal_code %></p>
+             <p>住所 : <%= park.address %></p>
+             <p><strong>遊具 : </strong>
+               <%= park.equipments.pluck(:name).join("、") %></p>
+             <p><strong>遊具 : </strong>
+               <%= park.facilities.pluck(:name).join("、") %></p>
+             <p><strong>年齢層 : </strong>
+               <%= park.age_groups.pluck(:name).join("、") %></p>
+            </td>
+            </tr>
+            <% end %>
+            
+          </tbody>
 </div>
-<% end %>
+</div>
+</div>
+

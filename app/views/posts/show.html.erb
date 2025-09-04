@@ -1,14 +1,27 @@
-<div>
-<h1>投稿詳細</h1>
-<%= image_tag @post.get_image %>
-<P>タイトル : <%= @post.title %></p>
-<p>本文 : <%= @post.body %></p>
-<p>投稿ユーザー画像</p>
-<p>ユーザーネーム : <%= @post.user.name %></p>
-<p>投稿日 : <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+       <%=render 'users/list',user: @user %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>投稿詳細</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><%= @post.created_at.strftime('%Y/%m/%d') %><br>
+              <%= image_tag @post.get_image, size: "200x200" %></td>
+              <td><%= @post.title %><br>
+              <%= @post.body %></td>
+            </tr>
+          </tbody>
+        </table>
+      
 
 <% if @post.user == current_user %>
- <%= link_to "投稿編集", edit_post_path %>
- <%= link_to "投稿削除", post_path(@post), method: :delete %>
+ <%= link_to "編集", edit_post_path %> |
+ <%= link_to "削除", post_path(@post), method: :delete %>
  <% end %>
+   </div>
+  </div>
 </div>

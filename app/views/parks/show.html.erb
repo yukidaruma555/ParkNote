@@ -2,46 +2,41 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
+      <h1>公園詳細</h1>
+         <% if @park.image.attached? %>
+            <%= image_tag @park.image, size: "300x300" %>
+         <% else %>
+            <%= image_tag 'no_image_square', size: "300x300" %>
+         <% end %>
+            <p>公園名 : <%= @park.park_name %></p>
+            <p>説明 : <%= @park.introduction %></p>
+            <p>郵便番号 : <%= @park.postal_code %></p>
+            <p>住所 : <%= @park.address %></p>
+            <p><strong>遊具 : </strong>
+               <%= @park.equipments.pluck(:name).join("、") %></p>
+            <p><strong>設備 : </strong>
+               <%= @park.facilities.pluck(:name).join("、") %></p>
+            <p><strong>年齢層 : </strong>
+               <%= @park.age_groups.pluck(:name).join("、") %></p>
+            <p>投稿ユーザー画像 : </p>
+            <p>ユーザーネーム : <%= @park.user.name %><p/>
+            <p>投稿日 : <%= @park.created_at.strftime('%Y/%m/%d') %></p>
 
-<h1>公園詳細</h1>
+            <p><%= link_to "編集", edit_park_path %>
 
+
+
+      <h3>公園投稿フォーム</h3> 
+        <%= form_with model: @post do |f| %>
+        <%= f.hidden_field :park_id, value: params[:id] %>
+        <h4>画像</h4>
+         <%= f.file_field :image, accept: "image/*" %>
+        <h4>タイトル</h4>
+         <%= f.text_field :title %>
+        <h4>本文</h4>
+         <%= f.text_area :body %>
+  
 <div>
-<% if @park.image.attached? %>
-  <%= image_tag @park.image, size: "300x300" %>
-<% else %>
-  <%= image_tag 'no_image_square', size: "300x300" %>
-<% end %>
-  <p>公園名 : <%= @park.park_name %></p>
-  <p>説明 : <%= @park.introduction %></p>
-  <p>郵便番号 : <%= @park.postal_code %></p>
-  <p>住所 : <%= @park.address %></p>
-  <p><strong>遊具 : </strong>kouenn
-   <%= @park.equipments.pluck(:name).join("、") %></p>
-  <p><strong>設備 : </strong>
-   <%= @park.facilities.pluck(:name).join("、") %></p>
-  <p><strong>年齢層 : </strong>
-   <%= @park.age_groups.pluck(:name).join("、") %></p>
-  <p>投稿ユーザー画像 : </p>
-  <p>ユーザーネーム : <%= @park.user.name %><p/>
-  <p>投稿日 : <%= @park.created_at.strftime('%Y/%m/%d') %></p>
-
-  <p><%= link_to "公園編集", edit_park_path %>
-
-</div>
-
-
-
-<h1>公園投稿フォーム</h1>
-<%= form_with model: @post do |f| %>
-  <%= f.hidden_field :park_id, value: params[:id] %>
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>本文</h4>
-  <%= f.text_field :body %>
-  <div>
-
   <div id="rate_<%= @post.id %>"></div>
 <script>
 $(document).on('turbolinks:load', function() {
@@ -64,19 +59,31 @@ $(document).on('turbolinks:load', function() {
 <% end %>
 
 </div>
+</div>
+
 <div class="col-md-8 offset-md-1">
 
 <h1><%= @park.park_name %> 投稿一覧</h1>
-<% @posts.each do |post| %>
-  <div>
-    <%= image_tag post.get_image, size: "300x300" %>
-    <p>投稿ユーザー画像</p>
-    <p>タイトル : <%= post.title %></p>
-    <p>本文 : <%= post.body %></p>
-    <p>ユーザーネーム : <%= post.user.name %></p>
+<table class="table">
+  <thead>
+    <tr>
+     <th>photo</th>
+     <th>Title</th>
+     <th>Body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <%= image_tag post.get_image, size: "300x300" %><br>
+          <%= post.user.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.body %></td>
+      </tr>
+    <% end %>
+  </tbody>
   </div>
-<% end %>
-</div>
 </div>
 </div>
 </main>
