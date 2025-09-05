@@ -11,8 +11,8 @@
             <tr>
               <td><%= @post.created_at.strftime('%Y/%m/%d') %><br>
               <%= image_tag @post.get_image, size: "200x200" %></td>
-              <td><%= @post.title %><br>
-              <%= @post.body %></td>
+              <td>Title : <%= @post.title %><br>
+              Body : <%= @post.body %></td>
             </tr>
           </tbody>
         </table>
@@ -20,7 +20,7 @@
 
 <% if @post.user == current_user %>
  <%= link_to "編集", edit_post_path %> |
- <%= link_to "削除", post_path(@post), method: :delete %>
+ <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } %>
  <% end %>
    </div>
   </div>

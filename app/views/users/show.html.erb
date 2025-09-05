@@ -23,6 +23,9 @@
              <%= link_to post_path(post.id) do %>
               <%= image_tag post.get_image, size: "200x200" %>
              <% end %>
+             <%= link_to park_path(post.park) do %>
+             <%= post.park.park_name %>
+             <% end %>
            </td>
            <td><%= post.title %></td>
            <td><%= post.body %></td>

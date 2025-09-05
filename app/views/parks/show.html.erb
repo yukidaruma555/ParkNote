@@ -18,9 +18,8 @@
                <%= @park.facilities.pluck(:name).join("、") %></p>
             <p><strong>年齢層 : </strong>
                <%= @park.age_groups.pluck(:name).join("、") %></p>
-            <p>投稿ユーザー画像 : </p>
-            <p>ユーザーネーム : <%= @park.user.name %><p/>
-            <p>投稿日 : <%= @park.created_at.strftime('%Y/%m/%d') %></p>
+            <p>登録者 : <%= @park.user.name %><p/>
+            <p>登録日 : <%= @park.created_at.strftime('%Y/%m/%d') %></p>
            <% if @park.user == current_user %>
             <%= link_to "編集", edit_park_path %> |
             <%= link_to "削除", park_path, method: :delete, data: { confirm: '本当に削除しますか？' } %>
@@ -78,7 +77,7 @@ $(document).on('turbolinks:load', function() {
       <tr>
         <td>
           <%= image_tag post.get_image, size: "300x300" %><br>
-          <%= post.user.name %></td>
+          投稿者 : <%= post.user.name %></td>
         <td><%= post.title %></td>
         <td><%= post.body %></td>
       </tr>
