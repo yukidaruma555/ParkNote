@@ -1,45 +1,52 @@
-<h1>公園登録フォーム</h1>
-<%= form_with model: @park do |f| %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+   <div class="col-md-8 offset-md-1">
 
-  <h4>画像</h4>
-    <%= f.file_field :image, accept: "image/*" %>
-  <h4>公園名</h4>
-    <%= f.text_field :park_name %>
-  <h4>公園の説明</h4>
-    <%= f.text_area :introduction %>
-  <h4>郵便番号</h4>
-    <%= f.text_field :postal_code %>
-  <h4>住所</h4>
-    <%= f.text_field :address %>
+    <h2>公園登録フォーム</h2>
+      <%= form_with model: @park do |f| %>
 
-    <div class="field">
-    <label>遊具（複数選択可）</label>
-    <%= f.collection_check_boxes(:equipment_ids, Equipment.all, :id, :name) do |b| %>
-      <span class="equip-item">
-        <%= b.check_box %>
-        <%= b.label %>
-      </span>
-    <% end %>
+       <h4>画像</h4>
+        <%= f.file_field :image, accept: "image/*" %>
+       <h4>公園名</h4>
+        <%= f.text_field :park_name %>
+       <h4>公園の説明</h4>
+        <%= f.text_area :introduction %>
+       <h4>郵便番号</h4>
+        <%= f.text_field :postal_code %>
+       <h4>住所</h4>
+        <%= f.text_field :address %>
 
-    <div class="field">
-    <label>設備（複数選択可）</label>
-    <%= f.collection_check_boxes(:facility_ids, Facility.all, :id, :name) do |b| %>
-      <sapn class="facility-item">
-        <%= b.check_box %>
-        <%= b.label %>
-      </span>
-    <% end %>
-    </div>
+      <div class="field">
+        <h5>遊具（複数選択可）</h5><br>
+         <%= f.collection_check_boxes(:equipment_ids, Equipment.all, :id, :name) do |b| %>
+          <span class="equip-item">
+           <%= b.check_box %>
+           <%= b.label %>
+          </span>
+        <% end %></div>
 
-    <div class="field">
-    <label>年齢層（複数選択可）</label>
-    <%= f.collection_check_boxes(:age_group_ids, AgeGroup.all, :id, :name) do |b| %>
-      <span class="facility-item">
-        <%= b.check_box %>
-        <%= b.label %>
-      </span>
-    <% end %>
-    </div>
+      <div class="field">
+        <h5>設備（複数選択可）</h5><br>
+         <%= f.collection_check_boxes(:facility_ids, Facility.all, :id, :name) do |b| %>
+          <sapn class="facility-item">
+           <%= b.check_box %>
+           <%= b.label %>
+          </span>
+        <% end %>
+     </div>
+
+     <div class="field">
+        <h5>年齢層（複数選択可）</h5><br>
+          <%= f.collection_check_boxes(:age_group_ids, AgeGroup.all, :id, :name) do |b| %>
+           <span class="facility-item">
+           <%= b.check_box %>
+           <%= b.label %>
+           </span>
+         <% end %>
+      </div>
     
-    <%= f.submit '登録' %>
-<% end %>
+        <%= f.submit '登録' %>
+      <% end %> 
+    </div>
+  </div>
+</div>
