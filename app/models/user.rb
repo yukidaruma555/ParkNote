@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   has_many :parks, dependent: :destroy
   has_many :posts, dependent: :destroy
+
+  validates :name, presence: true
   
 
   def get_profile_image(width, height)
