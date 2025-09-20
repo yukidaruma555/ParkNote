@@ -10,9 +10,11 @@
           <tbody>
             <tr>
               <td><%= @post.created_at.strftime('%Y/%m/%d') %><br>
-              <%= image_tag @post.get_image, size: "200x200" %></td>
+              <%= image_tag @post.get_image, size: "200x200" %>
+              </td>
               <td>Title : <%= @post.title %><br>
-              Body : <%= @post.body %></td>
+              Body : <%= @post.body %><br>
+              投稿者 : <%= link_to @post.user.name, user_path(@post.user) %></td>
             </tr>
           </tbody>
         </table>

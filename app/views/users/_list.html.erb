@@ -1,9 +1,8 @@
 
 <h1>User info</h1>
-  <%= link_to edit_user_path(@user) do %>
+ 
   <%= image_tag @user.get_profile_image(100,100) %>
-  <% end %>
-  
+
   
   <table class="table">
     <thead>
@@ -11,6 +10,7 @@
         <th>Name</th>
         <th><%= @user.name %></th>
       </tr>
+      <td><%= link_to "プロフィール編集", edit_user_path(@user) %></td>
     </thead>
   </table>
   

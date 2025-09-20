@@ -6,8 +6,11 @@ class ParksController < ApplicationController
   def create
     @park = Park.new(park_params)
     @park.user_id = current_user.id
-    @park.save
-    redirect_to parks_path
+    if @park.save
+    redirect_to parks_path(park_id: @park.id), notice: "公園を登録しました。"
+    else
+      reder :new, status: :unprocessable_entity
+    end
   end 
 
   def index

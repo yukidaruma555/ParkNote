@@ -3,8 +3,14 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id 
     @post.rating = post_params["rating"]
-    @post.save!
-    redirect_to park_path(@post.park_id)
+    if @post.save
+     redirect_to park_path(@post.park_id)
+    else
+      @park = Park.find(@post.park_id)
+      @posts = @park.posts.order(created_at: :desc)
+      @user = @park.user
+      render 'parks/show'
+    end
   end 
 
   def index
@@ -29,7 +35,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to posts_path
+    redirect_to user_path(post.user), notice: "投稿を削除しました"
   end
 
   private
