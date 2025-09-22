@@ -1,68 +1,65 @@
-<main>
-<div class="container px-5 px-sm-0">
-  <div class="row">
-  
-    <div class="col-md-3">
-      <h3>公園詳細</h3>
-         <% if @park.image.attached? %>
-            <%= image_tag @park.image, size: "300x300" %>
-         <% else %>
-            <%= image_tag 'no_image_square', size: "300x300" %>
-         <% end %>
-            <p>公園名 : <%= @park.park_name %></p>
-            <p>説明 : <%= @park.introduction %></p>
-            <p>郵便番号 : <%= @park.postal_code %></p>
-            <p>住所 : <%= @park.address %></p>
-            <p><strong>遊具 : </strong>
-               <%= @park.equipments.pluck(:name).join("、") %></p>
-            <p><strong>設備 : </strong>
-               <%= @park.facilities.pluck(:name).join("、") %></p>
-            <p><strong>年齢層 : </strong>
-               <%= @park.age_groups.pluck(:name).join("、") %></p>
-            <p>登録者 : <%= @park.user.name %><p/>
-            <p>登録日 : <%= @park.created_at.strftime('%Y/%m/%d') %></p>
-           <% if @park.user == current_user %>
-            <%= link_to "編集", edit_park_path(@park) %> |
-            <%= link_to "削除", park_path(@park), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-           <% end %>
-      <h3>投稿フォーム</h3> 
-      <% if @post.errors.any? %>
-        <%= @post.errors.count %>件のエラーが発生しました
-          <ul>
-        <% @post.errors.full_messages.each do |message| %>
-         <li><%= message %></li>
+<div class="row">
+  <div class="col-md-3">
+    <h3>公園詳細</h3>
+        <% if @park.image.attached? %>
+          <%= image_tag @park.image, size: "300x300" %>
+        <% else %>
+          <%= image_tag 'no_image_square', size: "300x300" %>
         <% end %>
-         </ul>
+          <p>公園名 : <%= @park.park_name %></p>
+          <p>説明 : <%= @park.introduction %></p>
+          <p>郵便番号 : <%= @park.postal_code %></p>
+          <p>住所 : <%= @park.address %></p>
+          <p><strong>遊具 : </strong>
+              <%= @park.equipments.pluck(:name).join("、") %></p>
+          <p><strong>設備 : </strong>
+              <%= @park.facilities.pluck(:name).join("、") %></p>
+          <p><strong>年齢層 : </strong>
+              <%= @park.age_groups.pluck(:name).join("、") %></p>
+          <p>登録者 : <%= @park.user.name %><p/>
+          <p>登録日 : <%= @park.created_at.strftime('%Y/%m/%d') %></p>
+          <% if @park.user == current_user %>
+          <%= link_to "編集", edit_park_path(@park) %> |
+          <%= link_to "削除", park_path(@park), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+          <% end %>
+    <h3>投稿フォーム</h3> 
+    <% if @post.errors.any? %>
+      <%= @post.errors.count %>件のエラーが発生しました
+        <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
-        <%= form_with model: @post do |f| %>
-        <%= f.hidden_field :park_id, value: @park.id %>
-        <h4>画像</h4>
-         <%= f.file_field :image, accept: "image/*" %>
-        <h4>タイトル</h4>
-         <%= f.text_field :title %>
-        <h4>本文</h4>
-         <%= f.text_area :body %>
+        </ul>
+    <% end %>
+      <%= form_with model: @post do |f| %>
+      <%= f.hidden_field :park_id, value: @park.id %>
+      <h4>画像</h4>
+        <%= f.file_field :image, accept: "image/*" %>
+      <h4>タイトル</h4>
+        <%= f.text_field :title %>
+      <h4>本文</h4>
+        <%= f.text_area :body %>
 <div>
 
-  <div id="rate_<%= @post.id %>"></div>
+<div id="rate_<%= @post.id %>"></div>
 <script>
 $(document).on('turbolinks:load', function() {
-  let elem = document.querySelector('#rate_<%= @post.id %>');
-  if (elem == null) return;
-  
-  elem.innerHTML = "";
-  let opt = {  
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    scoreName: 'post[rating]',
-    readOnly: false,
-  };
-  raty(elem, opt);
+let elem = document.querySelector('#rate_<%= @post.id %>');
+if (elem == null) return;
+
+elem.innerHTML = "";
+let opt = {  
+  starOn: "<%= asset_path('star-on.png') %>",
+  starOff: "<%= asset_path('star-off.png') %>",
+  scoreName: 'post[rating]',
+  readOnly: false,
+};
+raty(elem, opt);
 });
 </script>
 
 
-  <%= f.submit '投稿' %>
+<%= f.submit '投稿' %>
 <% end %>
 
 </div>
@@ -71,26 +68,24 @@ $(document).on('turbolinks:load', function() {
 <div class="col-md-8 offset-md-1">
 <h1><%= @park.park_name %>  投稿一覧</h1>
 <table class="table">
-  <thead>
+<thead>
+  <tr>
+    <th>photo</th>
+    <th>Title</th>
+    <th>Body</th>
+  </tr>
+</thead>
+<tbody>
+  <% @posts.each do |post| %>
     <tr>
-     <th>photo</th>
-     <th>Title</th>
-     <th>Body</th>
+      <td>
+        <%= image_tag post.get_image, size: "300x300" %><br>
+        投稿者 : <%= post.user.name %></td>
+      <td><%= post.title %></td>
+      <td><%= post.body %></td>
     </tr>
-  </thead>
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td>
-          <%= image_tag post.get_image, size: "300x300" %><br>
-          投稿者 : <%= post.user.name %></td>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  </div>
+  <% end %>
+</tbody>
+</div>
 
 </div>
-</div>
-</main>

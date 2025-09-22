@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
@@ -6,24 +9,22 @@ class UsersController < ApplicationController
   end
 
   def edit
-    is_matching_login_user
-    @user = User.find(params[:id])
   end
 
   def update
-    is_matching_login_user
-    @user = User.find(params[:id])
     if @user.update(user_params)
-    redirect_to user_path(@user.id)
+      flash[:notice] = "編集しました"
+      redirect_to user_path(@user.id)
     else
+      flash.now[:alert] = "編集に失敗しました"
       render :edit
     end
   end
 
   def destroy
-    user = current_user
-    user.destroy
+    @user.destroy
     session[:user_id] = nil
+    flash[:notice] = "退会しました"
     redirect_to root_path
   end
 
@@ -34,8 +35,8 @@ class UsersController < ApplicationController
   end
 
   def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
+    @user = User.find(params[:id])
+    unless @user.id == current_user.id
       redirect_to user_path
     end
   end

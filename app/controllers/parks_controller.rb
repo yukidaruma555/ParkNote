@@ -1,4 +1,7 @@
 class ParksController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def new
     @park = Park.new
   end
@@ -26,18 +29,15 @@ class ParksController < ApplicationController
   end
 
   def edit
-    @park = Park.find(params[:id])
   end
 
   def update
-    park = Park.find(params[:id])
-    park.update(park_params)
+    @park.update(park_params)
     redirect_to park_path(park.id)
   end
 
   def destroy
-    park = Park.find(params[:id])
-    park.destroy
+    @park.destroy
     redirect_to parks_path
   end
 
@@ -49,5 +49,17 @@ class ParksController < ApplicationController
       equipment_ids: [],
       facility_ids: [],
       age_group_ids: [])
+  end
+
+  def correct_user
+    @park = current_user.parks.find_by(id: params[:id])
+    redirect_to root_path unless @park
+
+    #上と同じ結果になるコード
+    #@park = Park.find_by(id: params[:id])
+    #user = @park.user
+    #if current_user != user
+    #  redirect_to root_path
+    #end
   end
 end
