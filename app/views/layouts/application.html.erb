@@ -12,34 +12,38 @@
 
   <body>
    <header>
-     <nav class="navber navbar-expand-lg navber-dark bg-green">
+     <nav class="navber navbar-expand-lg navber-light bg-light">
        <div class="container">
      <% if user_signed_in? %>
-       <li>
-         <%= link_to "公園登録", new_park_path %>
+      <ul class="navbar-nav">
+       <li class="nav-item">
+         <%= link_to "公園登録", new_park_path, class: "nav-link" %>
        </li>
-       <li>
-         <%= link_to "公園一覧", parks_path %>
+       <li class="nav-item">
+         <%= link_to "公園一覧", parks_path, class: "nav-link" %>
        </li>
-       <li>
-       <%= link_to "投稿一覧", posts_path %>
+       <li class="nav-item">
+       <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
      </li>
-     <li>
-     <%= link_to "マイページ", user_path(current_user.id) %>
+     <li class="nav-item">
+     <%= link_to "マイページ", user_path(current_user.id), class: "nav-link" %>
    </li>
-       <li>
-         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+       <li class="nav-item">
+         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
       </li>
+      </ul>
     <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
       </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
+      <li class="nav-item">
+        <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
       </li>
-      <li>
-        <%= link_to "アバウト", about_path %>
+      <li class="nav-item">
+        <%= link_to "アバウト", about_path, class: "nav-link" %>
       </li>
+      </ul>
     <% end %>
       </div>
     </nav>

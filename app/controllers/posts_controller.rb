@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id 
@@ -15,6 +18,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    
   end
 
   def show
@@ -47,4 +51,8 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :image, :body, :park_id, :rating)
   end
 
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to root_path unless @posts 
+  end
 end

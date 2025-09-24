@@ -20,7 +20,7 @@
           <%= link_to post_path(post) do %>
           <%= image_tag post.get_image, size: "300x300" %>
           <% end %><br>
-          投稿者 : <%= post.user.name %></td> 
+          投稿者 : <%= link_to post.user.name, user_path(post.user) %></td> 
           <td><%= post.title %></td>
           <td><%= post.body %></td>
         </tr>

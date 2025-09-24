@@ -33,11 +33,13 @@ class ParksController < ApplicationController
 
   def update
     @park.update(park_params)
-    redirect_to park_path(park.id)
+     flash[:notice] = "編集しました"
+    redirect_to park_path(@park.id)
   end
 
   def destroy
     @park.destroy
+     flash[:notice] = "削除しました"
     redirect_to parks_path
   end
 
