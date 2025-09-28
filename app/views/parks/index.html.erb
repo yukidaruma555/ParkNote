@@ -1,36 +1,31 @@
  <div class="row">
    <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <h2 class="text-center my-4">登録公園一覧</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>公園詳細</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @parks.each do |park| %>
-            <tr>
-            <td>
-             <%= link_to park_path(park.id) do %>
-             <%= image_tag park.get_image, size: "300x300" %>
-             <% end %></td>
-            <td>
-             <h4>公園名 : <%= park.park_name %></h4>
-             <p>説明 : <%= park.introduction %></p>
-             <p>郵便番号 : <%= park.postal_code %></p>
-             <p>住所 : <%= park.address %></p>
-             <p><strong>遊具 : </strong>
-               <%= park.equipments.pluck(:name).join("、") %></p>
-             <p><strong>遊具 : </strong>
-               <%= park.facilities.pluck(:name).join("、") %></p>
-             <p><strong>年齢層 : </strong>
-               <%= park.age_groups.pluck(:name).join("、") %></p>
-            </td>
-            </tr>
-            <% end %>
-            
-          </tbody>
-</div>
+        <% @parks.each do |park| %>
+          <div class="card mb-4 shadow-sm">
+            <div class="row no-gutters align-items-center">
+
+              <div class="col-4 text-center p-3">
+                <%= link_to park_path(park.id) do %>
+                  <%= image_tag park.get_image, class: "img-fluid rounded", alt: park.park_name, style: "max-height:220px; object-fit:cover;" %>
+                <% end %>
+              </div>
+
+              <div class="col-8">
+                <div class="card-body">
+                  <h4 class="card-title mb-3"><%= park.park_name %></h4>
+                  <p class="card-text"><strong>説明:</strong> <%= park.introduction %></p>
+                  <p class="card-text"><strong>郵便番号:</strong> <%= park.postal_code %></p>
+                  <p class="card-text"><strong>住所:</strong><%= park.address %></p>
+                  <p class="card-text"><strong>遊具:</strong> <%= park.equipments.pluck(:name).join("、") %></p>
+                  <p class="card-text"><strong>遊具:</strong> <%= park.facilities.pluck(:name).join("、") %></p>
+                  <p class="card-text"><strong>年齢層:</strong> <%= park.age_groups.pluck(:name).join("、") %></p>
+               </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+                  
+  </div>
 </div>
 

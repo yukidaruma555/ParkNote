@@ -1,16 +1,9 @@
+<div class="card shadow-sm mb-4">
+  <div class="card-body text-center">
 
-<h1>User info</h1>
- 
-  <%= image_tag @user.get_profile_image(100,100) %>
+    <%= image_tag @user.get_profile_image(100,100), class: "img-fluid rounded-circle mb-3", style: "object-fit:cover;" %>
+    <h5 class="card-title"><%= @user.name %></h5>
+    <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-primary btn-sm mt-2" %>
+  </div>
+</div>
 
-  
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th><%= @user.name %></th>
-      </tr>
-      <td><%= link_to "プロフィール編集", edit_user_path(@user) %></td>
-    </thead>
-  </table>
-  

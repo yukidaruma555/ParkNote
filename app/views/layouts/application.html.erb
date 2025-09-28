@@ -14,9 +14,10 @@
    <header>
      <nav class="navber navbar-expand-lg navber-light bg-light">
        <div class="container">
-
-      <ul class="navbar-nav ms-auto">
-     <% if user_signed_in? %>
+       
+       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+       <ul class="navbar-nav ml-auto">
+       <% if user_signed_in? %>
       
        <li class="nav-item">
          <%= link_to new_park_path, class: "nav-link" do%>
@@ -68,6 +69,7 @@
      
     <% end %>
        </ul>
+       <div>
       </div>
     </nav>
   </header>

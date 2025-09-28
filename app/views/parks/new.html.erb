@@ -1,50 +1,88 @@
 <div class="row">
   <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
 
-  <h2 class="text-center my-4">公園登録フォーム</h2>
-    <%= form_with model: @park do |f| %>
+    <h2 class="text-center my-4">公園登録フォーム</h2>
 
-      <h4>画像</h4>
-      <%= f.file_field :image, accept: "image/*" %>
-      <h4>公園名</h4>
-      <%= f.text_field :park_name %>
-      <h4>公園の説明</h4>
-      <%= f.text_area :introduction %>
-      <h4>郵便番号</h4>
-      <%= f.text_field :postal_code %>
-      <h4>住所</h4>
-      <%= f.text_field :address %>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <%= form_with model: @park do |f| %>
 
-    <div class="field">
-      <h5>遊具（複数選択可）</h5><br>
-        <%= f.collection_check_boxes(:equipment_ids, Equipment.all, :id, :name) do |b| %>
-        <span class="equip-item">
-          <%= b.check_box %>
-          <%= b.label %>
-        </span>
-      <% end %></div>
+      
+      <div class="form-group">
+        <%= f.label :park_name, '公園名' %>
+        <%= f.text_field :park_name, class: 'form-control', placeholder: '例）はる公園' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :introduction, '公園の説明' %>
+        <%= f.text_area :introduction, class: 'form-control', placeholder: '特徴や設備、雰囲気など' %>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <%= f.label :postal_code, '郵便番号' %>
+          <%= f.text_field :postal_code, class: 'form-control', placeholder: '123-4567' %>
+        </div>
+        <div class="form-group col-md-8">
+          <%= f.label :address, '住所' %>
+          <%= f.text_field :address, class: 'form-control', placeholder: '東京都世田谷区～' %>
+        </div>
+      </div>
 
-    <div class="field">
-      <h5>設備（複数選択可）</h5><br>
-        <%= f.collection_check_boxes(:facility_ids, Facility.all, :id, :name) do |b| %>
-        <span class="facility-item">
-          <%= b.check_box %>
-          <%= b.label %>
-        </span>
-      <% end %>
-    </div>
+      <div class="form-group mt-3">
+        <h5>遊具（複数選択可）</h5>
+          <div class="row">
+            <% Equipment.all.each do |eq| %>
+              <div class="col-6 col-md-4">
+                <div class="form-check">
+                  <%= f.check_box :equipment_ids,{ multiple: true, class: 'form-check-input' }, eq.id, nil %>
+                  <%= f.label :equipment_ids, eq.name, class: 'form-check-label mb-0 text-nowrap', title: eq.name %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+      </div>
 
-    <div class="field">
-      <h5>年齢層（複数選択可）</h5><br>
-        <%= f.collection_check_boxes(:age_group_ids, AgeGroup.all, :id, :name) do |b| %>
-          <span class="facility-item">
-          <%= b.check_box %>
-          <%= b.label %>
-          </span>
-        <% end %>
-    </div>
+      <div class="form-group mt-3">
+        <h5>設備（複数選択可）</h5>
+          <div class="row">
+            <% Facility.all.each do |fc| %>
+              <div class="col-6 col-md-4">
+                <div class="form-check">
+                  <%= f.check_box :facility_ids,{ multiple: true, class: 'form-check-input' }, fc.id, nil %>
+                  <%= f.label :facility_ids, fc.name, class: 'foem-check-label' %>
+                </div>
+              </div>
+          <% end %>
+          </div>
+      </div>
+
+      <div class="form-group mt-3">
+        <h5>年齢層（複数選択可）</h5>
+        <div class="row">
+          <% AgeGroup.all.each do |ag| %>
+            <div class="col-6 col-md-4">
+              <div class="form-check">
+                <%= f.check_box :age_group_ids, { multiple: true, class: 'form-check-input' }, ag.id, nil %>
+                <%= f.label :age_group_ids, ag.name, class: 'form-check-label' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <%= f.label :image, '画像', class: 'form-label' %> 
+        <%= f.file_field :image, accept: "image/*" %>
+          <small class="form-text text-muted">公園の写真を１枚アップロード</small>
+      <div>
+
   
-      <%= f.submit '登録' %>
+      <div class="form-group mt-4">
+        <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+      </div>
+
     <% end %> 
+    </div>
+   </div>
+
   </div>
 </div>
