@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id 
     @post.rating = post_params["rating"]
     if @post.save
-     redirect_to park_path(@post.park_id)
+     redirect_to park_path(@post.park_id), notice: "投稿が成功しました！"
     else
       @park = Park.find(@post.park_id)
       @posts = @park.posts.order(created_at: :desc)
@@ -27,12 +27,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
+      flash[:notice] = "編集しました"
     redirect_to post_path(@post.id)
     else
       render :edit
@@ -40,9 +39,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
-    redirect_to user_path(post.user), notice: "投稿を削除しました"
+    @post.destroy
+     flash[:notice] = "削除しました"
+    redirect_to user_path(post.user)
   end
 
   private

@@ -18,6 +18,7 @@
                 <p class="card-text mb-2"><%= post.body %></p>
                 <p class="card-text">
                 <small class="text-muted">
+                  公園名: <%= link_to post.park.park_name, park_path(post.park), class: "fw-bold" %><br />
                   投稿者: <%= link_to post.user.name, user_path(post.user), class: "fw-bold" %></small> 
                 </p>
              </div>
