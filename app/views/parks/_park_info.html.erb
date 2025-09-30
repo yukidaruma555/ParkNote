@@ -1,0 +1,53 @@
+<h3>公園詳細</h3>
+
+<% if park.image.attached? %>
+  <%= image_tag park.image, class: "img-fluid" %>
+<% else %>
+  <%= image_tag 'no_image_square', class: "img-fluid" %>
+<% end %>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th>公園名</th>
+      <td><%= park.park_name %></td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td><%= park.introduction %></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+      <td><%= park.postal_code %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= park.address %></td>
+    </tr>
+    <tr>
+      <th>遊具</th>
+      <td><%= park.equipments.pluck(:name).join("、") %></td>
+    </tr>
+    <tr>
+      <th>設備</th>
+      <td><%= park.facilities.pluck(:name).join("、") %></td>
+    </tr>
+    <tr>
+      <th>年齢層</th>
+      <td><%= park.age_groups.pluck(:name).join("、") %></td>
+    </tr>
+    <tr>
+      <th>登録者</th>
+      <td><%= park.user.name %></td>
+    </tr>
+    <tr>
+      <th>登録日</th>
+      <td><%= park.created_at.strftime('%Y/%m/%d') %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% if park.user == current_user %>
+  <%= link_to "編集", edit_park_path(park) %> |
+  <%= link_to "削除", park_path(park), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+<% end %>

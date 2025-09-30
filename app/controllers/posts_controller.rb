@@ -1,20 +1,18 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id 
-    @post.rating = post_params["rating"]
+    @post = current_user.posts.new(post_params)
+    @park = @post.park
     if @post.save
-     redirect_to park_path(@post.park_id), notice: "投稿が成功しました！"
+      redirect_to park_path(@park), notice: "投稿が成功しました！"
     else
-      @park = Park.find(@post.park_id)
       @posts = @park.posts.order(created_at: :desc)
       @user = @park.user
       render 'parks/show'
     end
-  end 
+  end
 
   def index
     @posts = Post.all
@@ -52,6 +50,6 @@ class PostsController < ApplicationController
 
   def correct_user
     @post = current_user.posts.find_by(id: params[:id])
-    redirect_to root_path unless @posts 
+    redirect_to root_path unless @post 
   end
 end

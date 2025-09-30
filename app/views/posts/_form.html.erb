@@ -1,0 +1,44 @@
+<%= form_with model: post do |f| %>
+  <%= f.hidden_field :park_id, value: park.id %>
+
+  <div class="mb-2">
+    <%= f.label :image, "画像" %>
+    <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+  </div>
+
+  <div class="mb-2">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-2">
+    <%= f.label :body, "本文" %>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="mb-2">
+    <%= f.label :rating, "評価" %>
+    <div id="post_rating"></div>
+  </div>
+
+  <div class="my-4">
+    <%= f.submit submit, class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+  let elem = document.querySelector('#post_rating');
+  if (elem == null) return;
+
+  elem.innerHTML = "";
+  let opt = {  
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    score: '<%= post.rating %>',
+    scoreName: 'post[rating]',
+    readOnly: false,
+  };
+  raty(elem, opt);
+  });
+</script>
