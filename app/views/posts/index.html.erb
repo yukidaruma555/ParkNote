@@ -1,31 +1,8 @@
 <div class="row">
   <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
     <h2 class="text-center my-4">投稿一覧</h2>
-      
-      <% @posts.each do |post| %>
-        <div class="card mb-4 shadow-sm">
-          <div class="row no-gutters align-items-center">
- 
-            <div class="col-md-4">
-             <%= link_to post_path(post) do %>
-              <%= image_tag post.get_image, class: "img-fluid rounded-start w-100", alt: post.title, style: "object-fit:cover; height:100%;" %>
-             <% end %>
-            </div>
+    
+     <%= render 'posts', posts: @posts %>
 
-            <div class="col-md-6">
-              <div class="card-body text-center">
-                <h5 class="card-tetle mb-2"><%= post.title %></h5>
-                <p class="card-text mb-2"><%= post.body %></p>
-                <p class="card-text">
-                <small class="text-muted">
-                  公園名: <%= link_to post.park.park_name, park_path(post.park), class: "fw-bold" %><br />
-                  投稿者: <%= link_to post.user.name, user_path(post.user), class: "fw-bold" %></small> 
-                </p>
-             </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      
   </div>
 </div>
