@@ -1,32 +1,7 @@
 <h2 class="text-center my-4">登録公園一覧</h2>
 
-<div class="row">
-  <% @parks.each do |park| %>
-    <%= render 'park', park: park %>
-    <div class="col-sm-12 col-md-6 col-lg-4">
-      <div class="card mb-4 shadow-sm">
-        <div class="row no-gutters align-items-center">
 
-          <div class="col-4 text-center p-3">
-            <%= link_to park_path(park.id) do %>
-              <%= image_tag park.get_image, class: "img-fluid rounded", alt: park.park_name, style: "max-height:220px; object-fit:cover;" %>
-            <% end %>
-          </div>
+<%= render 'park', parks: @parks %>
 
-          <div class="col-8">
-            <div class="card-body">
-              <h4 class="card-title mb-3"><%= park.park_name %></h4>
-              <p class="card-text"><strong>説明:</strong> <%= park.introduction %></p>
-              <p class="card-text"><strong>郵便番号:</strong> <%= park.postal_code %></p>
-              <p class="card-text"><strong>住所:</strong><%= park.address %></p>
-              <p class="card-text"><strong>遊具:</strong> <%= park.equipments.pluck(:name).join("、") %></p>
-              <p class="card-text"><strong>遊具:</strong> <%= park.facilities.pluck(:name).join("、") %></p>
-              <p class="card-text"><strong>年齢層:</strong> <%= park.age_groups.pluck(:name).join("、") %></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+
 

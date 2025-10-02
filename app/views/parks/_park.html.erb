@@ -1,15 +1,16 @@
-
-
- <div class="col-sm-12 col-md-6 col-lg-4">
-      <div class="card mb-4 shadow-sm">
-        <%= link_to park_path(park.id) do %>
-          <%= image_tag park.get_image, class: "card-img-top", alt: park.park_name, style: "max-height:220px; object-fit:cover;" %>
-        <% end %>
-       </div>
-            <div class="card-body">
-              <h4 class="card-title mb-3"><%= park.park_name %></h4>
-              <p class="card-text"><%= park.introduction %></p>
-              <p class="card-text"><strong><%= park.postal_code %> / 
-              <%= park.address %></p> 
-            </div>
-    </div>
+<div class="col-sm-12 col-md-6 col-lg-4">
+   <% parks.each do |park| %>
+     <div class="card mb-4 shadow-sm">
+       <%= link_to park_path(park.id) do %>
+         <%= image_tag park.get_image, class: "card-img-top", alt: park.park_name, style: "max-height:220px; object-fit:cover;" %>
+       <% end %>
+    
+     <div class="card-body">
+       <h4 class="card-title mb-3"><%= park.park_name %></h4>
+       <p class="card-text"><%= park.introduction %></p>
+       <p class="card-text"><strong><%= park.postal_code %> 
+        <%= park.address %></p> 
+     </div>    
+     </div>
+   <% end %>
+   </div>
