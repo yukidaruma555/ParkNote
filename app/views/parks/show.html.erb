@@ -5,26 +5,24 @@
   </div>
 
   <div class="col-md-8">
-    <h1><%= @park.park_name %>  の投稿</h1>
-    <table class="table">
-    <thead>
-      <tr>
-        <th>photo</th>
-        <th>Title</th>
-        <th>Body</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td>
-            <%= link_to post_path(post) do %>
-            <%= image_tag post.get_image, size: "300x300" %><% end %><br>
-            投稿者 : <%= post.user.name %></td>
-          <td><%= post.title %></td>
-          <td><%= post.body %></td>
-        </tr>
-      <% end %>
-    </tbody>
+   <h1><%= @park.park_name %>  の投稿</h1>
+   
+   <ul class="list-unstyled">
+    <% @posts.each do |post| %>
+     <li class="d-flex align-items-start mb-4 border-bottom pb-3">
+        <div class="flex-shrink-0" style="width: 150px;"> 
+         <%= link_to post_path(post) do %>
+           <%= image_tag post.get_image, class: "img-fluid rounded" %>
+         <% end %>
+        </div>
+       
+        <div class="flex-grow-1">
+          <h5><%= post.title %></h5>
+          <p class="mb-0 text-secondary"><%= post.body %></p>
+          <p class="mb-1 text-muted" >投稿者 : <%= post.user.name %></p>
+        </div>
+      </li>
+     <% end %>
+    </ul>
   </div>
 </div>
