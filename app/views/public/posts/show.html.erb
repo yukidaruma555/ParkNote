@@ -1,10 +1,10 @@
 <div class="row">
-  <div class="col-md-3">
-      <%=render 'users/list',user: @user %>
+  <div class="col-md-4">
+      <%=render 'public/parks/park_info', park: @park %>
   </div>
 
-  <div class="col-md-9">
-   <header class="d-flex justify-content-between align-items-start mb-3">
+  <div class="col-md-8">
+  
     <div>
     <h2 class="mb-1">投稿詳細</h2>
       <div class="small text-muted">
@@ -14,32 +14,28 @@
     </div>
 
     <% if @post.user == current_user %>
-      <div class="btn-group">
-      <%= link_to "編集", edit_post_path, class: "btn btn-sm btn-outline-secondary" %> 
+      <div>
+      <%= link_to "編集", edit_post_path, class: "btn btn-primary" %> 
       <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' },
-          class: "btn btn-sm btn-outline-danger" %>
+          class: "btn btn-danger" %>
     </div>
    <% end %>
-  </header>
+  
 
-    <section class="d-flex gap-4 align-items-start mb-4">
-     <div class="flex-shrink-0" style="width: 150px;"> 
+    
+     <div> 
        <%= image_tag @post.get_image, class: "img-fluid rounded" %>
-     </div>
-        <div class="flex-grow-1">
-          <h3 class="h5 mb-2"><%= @post.title %></h3>
-           <div class="lh-lg text-body"><%= @post.body %></div>
+          <h3><%= @post.title %></h3>
+           <p><%= @post.body %></p>
         </div>
-      </section>
-      <section aria-labelledby="comments-title" class="mb-4">
-         <h3 id="comments-title" class="h5 mb-3">
-           コメント件数 : <%= @post.post_comments.count %></h3>
+      
+         <h5>コメント件数 : <%= @post.post_comments.count %></h5>
 
-           <ul class="list-group mb-4">
+           <ul>
              <% @post.post_comments.each do |post_comment| %>
                 <li class="list-group-item p-3">
                  <div class="d-flex gap-3">
-                   <%= image_tag post_comment.user.get_profile_image(100,100), class: "img-fluid rounded-circle mb-3", style: "object-fit:cover;" %>
+                   <%= image_tag post_comment.user.get_profile_image(100,100), class: "img-fluid rounded-circle" %>
                    <div class="flex-grow-1">
                     <div class="d-flex justify-content-between align-items-center mb-1">
                      <div class="fw-semibold">
@@ -49,7 +45,7 @@
                           <%= post_comment.created_at.strftime('%Y/%m/%d') %>
                        </small>
                     </div>
-                       <p class="mb-0"><%= post_comment.comment %></p>
+                       <p><%= post_comment.comment %></p>
                   </div>
                </div>
               </li>
@@ -58,7 +54,7 @@
   
 
   <div class="border rounded p-3">
-    <h4 class="h6 mb-2">コメントを投稿</h4>
+    <h5>コメントを投稿</h5>
       <%= form_with model: [@post,@post_comment] do |f| %>
         <%= f.text_area :comment, rows: 4, class: "form-control", placeholder: "コメントをここに" %>
           <div class="text-end">

@@ -38,7 +38,7 @@
     </tr>
     <tr>
       <th>登録者</th>
-      <td><%= park.user.name %></td>
+      <td><%= park.user&.name || "退会済みユーザー" %></td>
     </tr>
     <tr>
       <th>登録日</th>
@@ -47,7 +47,10 @@
   </tbody>
 </table>
 
+
 <% if park.user == current_user %>
-  <%= link_to "編集", edit_park_path(park) %> |
-  <%= link_to "削除", park_path(park), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  <div class="md-4">
+    <%= link_to "編集", edit_park_path(park), class: "btn btn-primary" %> 
+    <%= link_to "削除", park_path(park), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-danger" %>
+  </div>
 <% end %>

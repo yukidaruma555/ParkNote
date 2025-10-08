@@ -1,0 +1,10 @@
+<% if @park.errors.any? %>
+  <div class="alert alert-warning">
+    <%= @park.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @park.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

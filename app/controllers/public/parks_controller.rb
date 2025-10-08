@@ -1,4 +1,4 @@
-class ParksController < ApplicationController
+class Public::ParksController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
@@ -12,7 +12,7 @@ class ParksController < ApplicationController
     if @park.save
     redirect_to parks_path(park_id: @park.id), notice: "公園を登録しました。"
     else
-      reder :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end 
 
@@ -32,9 +32,12 @@ class ParksController < ApplicationController
   end
 
   def update
-    @park.update(park_params)
+    if @park.update(park_params)
      flash[:notice] = "編集しました"
     redirect_to park_path(@park.id)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

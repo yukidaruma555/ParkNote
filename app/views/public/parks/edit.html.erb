@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+    <h2 class="text-center my-4">公園の編集</h2>
+
+      <%=render 'layouts/park_error_messages', park: @park %>
+
+      <%=render 'public/parks/form', park: @park, submit: "編集" %>
+
+  </div>
+</div>

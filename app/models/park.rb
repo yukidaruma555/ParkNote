@@ -13,6 +13,11 @@ class Park < ApplicationRecord
   has_many :park_age_groups, dependent: :destroy
   has_many :age_groups, through: :park_age_groups
 
+  validates :park_name, presence: true
+  validates :introduction, presence: true
+  validates :postal_code, presence: true
+  validates :address, presence: true
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image_square.jpg')

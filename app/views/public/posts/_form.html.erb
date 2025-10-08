@@ -2,11 +2,6 @@
   <%= f.hidden_field :park_id, value: park.id %>
 
   <div class="mb-2">
-    <%= f.label :image, "画像" %>
-    <%= f.file_field :image, accept: "image/*", class: "form-control" %>
-  </div>
-
-  <div class="mb-2">
     <%= f.label :title, "タイトル" %>
     <%= f.text_field :title, class: "form-control" %>
   </div>
@@ -14,6 +9,11 @@
   <div class="mb-2">
     <%= f.label :body, "本文" %>
     <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="mb-2">
+    <%= f.label :image, "画像" %>
+    <%= f.file_field :image, accept: "image/*", class: "form-control" %>
   </div>
 
   <div class="mb-2">

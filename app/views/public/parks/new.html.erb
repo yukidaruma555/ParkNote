@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+
+    <h2 class="text-center my-4">公園の登録</h2>
+
+      <%=render 'layouts/park_error_messages', park: @park %>
+
+      <%=render 'public/parks/form', park: @park, submit: "登録" %>    
+  </div>
+</div>
