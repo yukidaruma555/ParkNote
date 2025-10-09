@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboards#index'
     get 'dashboards', to: 'dashboards#index'
-    resources :users, only: [:destroy]
+    resources :users, only: [:show, :destroy]
   end
 
   devise_for :users
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
     resources :parks, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-      resources :post_comments, only: [:create]
+      resources :post_comments, only: [:create, :destroy]
     end
     resources :users, only: [:show, :edit, :update, :destroy]
 
