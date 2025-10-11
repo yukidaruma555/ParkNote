@@ -1,0 +1,18 @@
+<div id="post_rating"></div>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+  let elem = document.querySelector('#post_rating');
+  if (elem == null) return;
+
+  elem.innerHTML = "";
+  let opt = {  
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    score: '<%= post.rating %>',
+    scoreName: 'post[rating]',
+    readOnly: false,
+  };
+  raty(elem, opt);
+  });
+</script>

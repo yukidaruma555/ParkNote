@@ -18,7 +18,7 @@
 
   <div class="mb-2">
     <%= f.label :rating, "評価" %>
-    <div id="post_rating"></div>
+    <%=render 'public/posts/rating', post: @post %>
   </div>
 
   <div class="my-4">
@@ -26,19 +26,3 @@
   </div>
 <% end %>
 
-<script>
-  $(document).on('turbolinks:load', function() {
-  let elem = document.querySelector('#post_rating');
-  if (elem == null) return;
-
-  elem.innerHTML = "";
-  let opt = {  
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    score: '<%= post.rating %>',
-    scoreName: 'post[rating]',
-    readOnly: false,
-  };
-  raty(elem, opt);
-  });
-</script>

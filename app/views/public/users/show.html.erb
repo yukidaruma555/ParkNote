@@ -4,32 +4,31 @@
   </div>
 
   <div class="col-md-9">
-    <h2 class="mb-4">Park</h2>
-     
-       <% @posts.each do |post| %>
-         <div class="card mb-3 shadow-sm">
-           <div class="row no-gutters align-items-center">
-            <div class="col-md-4 text-cener p-2">
-              <%= link_to post_path(post.id) do %>
-                <%= image_tag post.get_image, size: "200x200", class: "img-fluid rounded", style: "object-fit:cover;" %>
-              <% end %>
-            </div>
-            <div class="col-md-8">
+    <h2 class="text-center my-4">投稿一覧</h2>
+
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-6 col-sm-6">
+            <div class="card mb-2 shadow-sm">
+                <%= link_to post_path(post.id) do %>
+                  <%= image_tag post.get_image, class: "card-img-top", style: "object-fit:cover; height:250px;" %>
+                <% end %>
+            
               <div class="card-body">
-                <h5 class="card-title">
-                  <%= post.title %></h5>
-                   <p class="card-text"><%= post.body %></p>
-                   <p class="card-text">
+                <p class="card-text">
                   <small class="text-muted">
                    <%= link_to park_path(post.park), class: "text-decoration-none" do %>
                     <%= post.park.park_name%>
                    <% end %>
-             |      <%= post.created_at.strftime("%Y/%m/%d") %></small>
-                   </p>
+                   ・ <%= post.created_at.strftime("%Y/%m/%d") %></small>
+                </p>
+                <h5 class="card-title"> <%= post.title %></h5>
+               
+                <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
               </div>
             </div>
-          </div>
-        </div>
-       <% end %>
+          </div>  
+        <% end %>
+      </div>
   </div>
 </div>

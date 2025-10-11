@@ -6,6 +6,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
     @park = @user.parks
+    
   end
 
   def edit

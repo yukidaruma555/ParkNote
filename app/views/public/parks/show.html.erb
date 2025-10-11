@@ -1,27 +1,43 @@
 <div class="row">
   <div class="col-md-4">
     <%= render 'public/parks/park_info', park: @park %>
-    <%= render 'public/parks/new_post_form', post: @post, park: @park %>
+      <div class="mt-4">
+        <%= render 'public/parks/new_post_form', post: @post, park: @park %>
+      </div>
   </div>
 
-  <div class="col-md-8">
-   <h1><%= @park.park_name %>  の投稿</h1>
-   
-   <ul class="list-unstyled">
-    <% @posts.each do |post| %>
-     <li class="d-flex align-items-start mb-4 border-bottom pb-3">
-        <div class="flex-shrink-0" style="width: 150px;"> 
-         <%= link_to post_path(post) do %>
-           <%= image_tag post.get_image, class: "img-fluid rounded" %>
-         <% end %>
-        </div>
-       
-        <div class="flex-grow-1">
-          <h5><%= post.title %></h5>
-          <p class="mb-0 text-secondary"><%= post.body %></p>
-          <p class="mb-1 text-muted" >投稿者 : <%= post.user.name %></p>
-        </div>
-      </li>
+ 
+  <div class="col-md-8 pl-md-4">
+    <h2 class="mb-3"><%= @park.park_name %>  の投稿</h2>
+
+      <ul class="list-unstyled mb-0">
+        <% @posts.each do |post| %>
+        <li class="pb-4 mb-4 border-bottom">
+
+          <div class="d-flex align-items-center mb-2">
+              <%= image_tag post.user.get_profile_image(40,40), class: "rounded-circle mr-2" %>
+            <div class="mr-auto">  
+              <%= link_to post.user.name, user_path(post.user), class: "textt-decoration-none" %>さん
+                <small class="text-muted ml-2"> <%= post.created_at.strftime('%Y/%m/%d') %></small>
+            </div>
+          </div>
+          <div class="row no-gutters align-items-start">
+            <div class="col-md-5 mb-3 mb-md-0 pr-md-3">
+              <%= link_to post_path(post) do %>
+                <%= image_tag post.get_image, class: "img-fluid rounded", style: "100X100" %>
+              <% end %>
+            </div>
+            
+              <div class="col-md-7"> 
+              
+              <%=render 'public/posts/rating', post: @post %>
+              
+                <h3 class="h5 mb-0"><%= post.title %></h3> 
+                <p class="text-secondary"><%= post.body %></p>
+              </div>
+           </div>
+          </div>
+        </li>
      <% end %>
     </ul>
   </div>
