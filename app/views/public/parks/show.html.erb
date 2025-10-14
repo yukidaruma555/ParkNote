@@ -6,19 +6,17 @@
       </div>
   </div>
 
- 
   <div class="col-md-8 pl-md-4">
     <h2 class="mb-3"><%= @park.park_name %>  の投稿</h2>
 
-      <ul class="list-unstyled mb-0">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
         <% @posts.each do |post| %>
-        <li class="pb-4 mb-4 border-bottom">
-
           <div class="d-flex align-items-center mb-2">
-              <%= image_tag post.user.get_profile_image(40,40), class: "rounded-circle mr-2" %>
+            <%= image_tag post.user.get_profile_image(40,40), class: "rounded-circle mr-2" %>
             <div class="mr-auto">  
               <%= link_to post.user.name, user_path(post.user), class: "textt-decoration-none" %>さん
-                <small class="text-muted ml-2"> <%= post.created_at.strftime('%Y/%m/%d') %></small>
+              <small class="text-muted ml-2"> <%= post.created_at.strftime('%Y/%m/%d') %></small>
             </div>
           </div>
           <div class="row no-gutters align-items-start">
@@ -27,18 +25,14 @@
                 <%= image_tag post.get_image, class: "img-fluid rounded", style: "100X100" %>
               <% end %>
             </div>
-            
-              <div class="col-md-7"> 
-              
-              <%=render 'public/posts/rating', post: @post %>
-              
-                <h3 class="h5 mb-0"><%= post.title %></h3> 
-                <p class="text-secondary"><%= post.body %></p>
-              </div>
-           </div>
-          </div>
-        </li>
-     <% end %>
+            <div class="col-md-7"> 
+              <%=render 'public/posts/rating_show', post: post %>            
+              <h3 class="h5 mb-0"><%= post.title %></h3> 
+              <p class="text-secondary"><%= post.body %></p>
+            </div>
+          </div>      
+        <% end %>
+      </li>
     </ul>
   </div>
 </div>

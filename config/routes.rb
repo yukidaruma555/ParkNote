@@ -22,5 +22,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :destroy]
 
     get "/homes/about", to: "homes#about", as: 'about'
+
+    get "/search", to: "searches#search"
   end
 end

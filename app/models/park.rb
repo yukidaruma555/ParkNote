@@ -26,4 +26,15 @@ class Park < ApplicationRecord
     image
   end
 
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Park.where(park_name: content)
+    elsif method == 'forward'
+      Park.where('park_name LIKE ?', content + '%')
+    elsif method == 'backward'
+      Park.where('park_name LIKE ?', '%' + content)
+    else 
+      Park.where('park_name LIKE ?', '%' + content + '%')
+    end
+  end
 end
