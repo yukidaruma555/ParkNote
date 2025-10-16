@@ -24,5 +24,7 @@ Rails.application.routes.draw do
     get "/homes/about", to: "homes#about", as: 'about'
 
     get "/search", to: "searches#search"
+    
+    post 'guest_login', to: 'users#guest_login'
   end
 end
