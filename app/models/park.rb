@@ -2,7 +2,7 @@ class Park < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
-  has_many :posts, dependent: :destroy
+  has_many :posts, dependent: :restrict_with_error
 
   has_many :park_equipments, dependent: :destroy
   has_many :equipments, through: :park_equipments
@@ -17,6 +17,8 @@ class Park < ApplicationRecord
   validates :introduction, presence: true
   validates :postal_code, presence: true
   validates :address, presence: true
+
+  
 
   def get_image
     unless image.attached?
@@ -37,4 +39,7 @@ class Park < ApplicationRecord
       Park.where('park_name LIKE ?', '%' + content + '%')
     end
   end
+ 
+ 
 end
+

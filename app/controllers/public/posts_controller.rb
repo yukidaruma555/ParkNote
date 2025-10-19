@@ -41,7 +41,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post.destroy
      flash[:notice] = "削除しました"
-    redirect_to user_path(post.user)
+    redirect_to user_path(@post.user)
   end
 
   private

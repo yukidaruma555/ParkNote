@@ -40,9 +40,17 @@ class Public::ParksController < ApplicationController
   end
 
   def destroy
-    @park.destroy
+    if @park.posts.exists?
+      redirect_to @park, alert: "投稿があるため削除できません。"
+      return
+    end
+
+    if @park.destroy
      flash[:notice] = "削除しました"
-    redirect_to parks_path
+     redirect_to parks_path
+    else
+      redirect_to @park, alert: @park.errors.full_messages.to_sentence
+    end
   end
 
   private
