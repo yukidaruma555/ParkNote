@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
     resources :parks, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resource :favorite, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
     resources :users, only: [:show, :edit, :update, :destroy]

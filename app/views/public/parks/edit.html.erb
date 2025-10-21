@@ -6,6 +6,8 @@
       <%=render 'layouts/park_error_messages', park: @park %>
 
       <%=render 'public/parks/form', park: @park, submit: "編集" %>
-
+    <div class="text-center mt-3">
+      <%= link_to "Back", park_path, class: "font-weight-bold d-inline-block mt-3" %>
+    </div>
   </div>
 </div>

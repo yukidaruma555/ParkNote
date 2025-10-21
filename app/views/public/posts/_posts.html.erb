@@ -12,7 +12,7 @@
        <p class="card-text">
        <small class="text-muted">
          <%= link_to post.park.park_name, park_path(post.park), class: "fw-bold" %> |
-         <%= link_to post.user.name, user_path(post.user), class: "fw-bold" %></small><br>  
+         <%= link_to post.user.name, user_path(post.user), class: "fw-bold" %></small><br>
          <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
      </div>
     </div>
