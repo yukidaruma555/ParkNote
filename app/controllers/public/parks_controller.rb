@@ -17,9 +17,11 @@ class Public::ParksController < ApplicationController
   end 
 
   def index
-    @parks = Park.all
+    @parks = Park.includes(:park_equipments, :park_facilities, :age_groups).all
+    @parks = @parks.where('park_equipments.equipment_id': params[:equipment_ids]) if params[:equipment_ids].present?
+    @parks = @parks.where('park_facilities.facility_id': params[:facility_ids]) if params[:facility_ids].present?
+    @parks = @parks.where('park_age_groups.age_group_id': params[:age_group_ids]) if params[:age_group_ids].present?
   end
-
   def show
     @park = Park.find(params[:id])
     @post = Post.new

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     root to: 'dashboards#index'
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:show, :destroy]
+    resources :park_dashboards, only: [:index, :show, :edit, :update, :destroy]
   end
 
   devise_for :users

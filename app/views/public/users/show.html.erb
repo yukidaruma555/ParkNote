@@ -26,7 +26,7 @@
             <div class="col-md-7"> 
               <%=render 'public/posts/rating_show', post: post %>      
               <h3 class="h5 mb-0"><%= post.title %></h3>
-              <p class="text-secondary"><%= post.body %></p>
+              <p class="text-secondary"><%= truncate(post.body, length: 30, omission: "...") %></p>
               <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
             </div>  
           </div>  

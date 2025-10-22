@@ -1,0 +1,8 @@
+<h1>全登録公園一覧</h1>
+<ul>
+  <% @parks.each do |park| %>
+    <li>
+      <%= link_to park.park_name, admin_park_dashboard_path(park) %>
+    </li>
+  <% end %>
+</ul>
