@@ -2,6 +2,5 @@
  <h5><%= @user.name %>さんの会員詳細</h5>
   <p>会員ID: <%= @user.id %></p>
   <p>名前: <%= @user.name %></p>
-  <p>ステータス</p>
   <%= link_to '削除', admin_user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' } %>
 </div>

@@ -4,6 +4,7 @@
     <title>Admin - ParkNote</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/e71241d1d0.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,12 +13,30 @@
    <header>
      <nav class="navbar navbar-expand-lg navbar-light bg-light">
        <div class="container">
-        <% if admin_signed_in? %>
-          <div class="text-right">
-            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-          </div>
-        <% end %>
-       </div>
+         <a class="navbar-brand" href="#">ParkNote</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to admin_dashboards_path, class: "nav-link" do %>
+                <i class="fa-solid fa-user"></i> ユーザー
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_park_dashboards_path, class: "nav-link" do %>
+                  <i class="fa-solid fa-tree"></i> 公園
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %>
+                  <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
      </nav>
     </header>
        <div class="container pt-5">
