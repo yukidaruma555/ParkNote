@@ -1,9 +1,6 @@
 <div>
  <h5>公園詳細</h5>
-  <p>名前: <%= @park.park_name %></p>
-   <p>説明: <%= @park.introduction %></p>
-    <p>郵便番号: <%= @park.postal_code %></p>
-     <p>住所: <%= @park.address %></p>
-      
-  <%= link_to '削除', admin_park_dashboards_path(@park), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <%= render "public/parks/park_info", park: @park %>
+   <%= link_to "編集", edit_admin_park_dashboard_path(@park) %>    
+  <%= link_to '削除', admin_park_dashboard_path(@park), method: :delete, data: { confirm: '本当に削除しますか？' } %>
 </div>
