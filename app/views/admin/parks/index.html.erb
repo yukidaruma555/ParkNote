@@ -2,7 +2,7 @@
 <ul>
   <% @parks.each do |park| %>
     <li>
-      <%= link_to park.park_name, admin_park_dashboard_path(park) %>
+      <%= link_to park.park_name, admin_park_path(park) %>
     </li>
   <% end %>
 </ul>

@@ -20,12 +20,12 @@
           <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
               <li class="nav-item">
-                <%= link_to admin_dashboards_path, class: "nav-link" do %>
+                <%= link_to admin_users_path, class: "nav-link" do %>
                 <i class="fa-solid fa-user"></i> ユーザー
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to admin_park_dashboards_path, class: "nav-link" do %>
+                <%= link_to admin_parks_path, class: "nav-link" do %>
                   <i class="fa-solid fa-tree"></i> 公園
                 <% end %>
               </li>
@@ -39,8 +39,9 @@
         </div>
      </nav>
     </header>
-       <div class="container pt-5">
+      <div class="container pt-5">
+        <%= render "layouts/flash_messages" %>
          <%= yield %>
-       </div>
+      </div>
   </body>
 </html>

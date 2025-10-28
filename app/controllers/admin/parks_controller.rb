@@ -1,4 +1,4 @@
-class Admin::ParkDashboardsController < ApplicationController
+class Admin::ParksController < ApplicationController
   layout 'admin'
   before_action :authenticate_admin!
 
@@ -18,24 +18,19 @@ class Admin::ParkDashboardsController < ApplicationController
   def update
     @park = Park.find(params[:id])
     if @park.update(park_params)
-    redirect_to admin_park_dashboard_path(@park), notice: "編集しました"
+    redirect_to admin_park_path(@park), notice: "編集しました"
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    
-    if @park.posts.exists?
-      redirect_to admin_park_dashboards_path, alert: "投稿があるため削除できません。"
-      return
-    end
-
+    @park = Park.find(params[:id])
     if @park.destroy
-     flash[:notice] = "削除しました"
-     redirect_to admin_park_dashboards_path, notice: "削除しました"
+      redirect_to admin_parks_path, notice: '公園を削除しました。'
     else
-      redirect_to admin_park_dashboard_path(@park), alert: @park.errors.full_messages.to_sentence
+      flash[:alert] = '投稿が存在するレコードは削除できません。'
+      redirect_to admin_park_path(@park)
     end
   end
 

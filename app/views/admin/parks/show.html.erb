@@ -1,0 +1,6 @@
+<div>
+ <h5>公園詳細</h5>
+      <%= render "public/parks/park_info", park: @park %>
+   <%= link_to "編集", edit_admin_park_path(@park) %>    
+  <%= link_to '削除', admin_park_path(@park), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+</div>

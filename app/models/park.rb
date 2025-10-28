@@ -1,6 +1,6 @@
 class Park < ApplicationRecord
-
   has_one_attached :image
+
   belongs_to :user
   has_many :posts, dependent: :restrict_with_error
 
@@ -18,7 +18,8 @@ class Park < ApplicationRecord
   validates :postal_code, presence: true
   validates :address, presence: true
 
-  
+  geocoded_by :address
+  after_validation :geocode
 
   def get_image
     unless image.attached?
@@ -39,7 +40,5 @@ class Park < ApplicationRecord
       Park.where('park_name LIKE ?', '%' + content + '%')
     end
   end
- 
- 
 end
 

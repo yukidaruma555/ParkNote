@@ -1,4 +1,4 @@
-<%= form_with model: @park, url: admin_park_dashboard_path(@park), method: :patch, local: true do |f| %>
+<%= form_with model: [:admin, @park], local: true do |f| %>
 
     <div class="mb-2">
       <%= f.label :park_name, '公園名' %>

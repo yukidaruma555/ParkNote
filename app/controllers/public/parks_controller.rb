@@ -17,11 +17,20 @@ class Public::ParksController < ApplicationController
   end 
 
   def index
-    @parks = Park.includes(:park_equipments, :park_facilities, :age_groups).all
-    @parks = @parks.where('park_equipments.equipment_id': params[:equipment_ids]) if params[:equipment_ids]&.compact_blank.present?
-    @parks = @parks.where('park_facilities.facility_id': params[:facility_ids]) if params[:facility_ids]&.compact_blank.present?
-    @parks = @parks.where('park_age_groups.age_group_id': params[:age_group_ids]) if params[:age_group_ids]&.compact_blank.present?
+    parks = Park.includes(:park_equipments, :park_facilities, :age_groups).all
+    parks = parks.where('park_equipments.equipment_id': params[:equipment_ids]) if params[:equipment_ids]&.compact_blank.present?
+    parks = parks.where('park_facilities.facility_id': params[:facility_ids]) if params[:facility_ids]&.compact_blank.present?
+    parks = parks.where('park_age_groups.age_group_id': params[:age_group_ids]) if params[:age_group_ids]&.compact_blank.present?
+    respond_to do |format|
+      format.html do
+        @parks = parks#.page(params[:page])
+      end
+      format.json do
+        @parks = parks
+      end
+    end
   end
+
   def show
     @park = Park.find(params[:id])
     @post = Post.new
