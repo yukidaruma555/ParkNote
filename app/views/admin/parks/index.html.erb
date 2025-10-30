@@ -1,8 +1,21 @@
 <h1>全登録公園一覧</h1>
-<ul>
-  <% @parks.each do |park| %>
-    <li>
-      <%= link_to park.park_name, admin_park_path(park) %>
-    </li>
-  <% end %>
-</ul>
+ <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">公園名</th>
+        <th scope="col">住所</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @parks.each do |park| %>
+      <tr>
+        <th scope="row"><%= park.id %></th>
+        <td><%= park.park_name %></td>
+        <td><%= park.address %></td>
+        <td><%= link_to "show", admin_park_path(park) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+</table>      

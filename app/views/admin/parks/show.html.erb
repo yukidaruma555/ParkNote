@@ -1,6 +1,30 @@
-<div>
- <h5>公園詳細</h5>
+<div class="row">
+  <div class="col-md-5">
+    <h5>公園詳細</h5>
+      <%= link_to "編集", edit_admin_park_path(@park), class: "btn btn-outline-primary" %>    
+      <%= link_to '削除', admin_park_path(@park), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger" %> 
       <%= render "public/parks/park_info", park: @park %>
-   <%= link_to "編集", edit_admin_park_path(@park) %>    
-  <%= link_to '削除', admin_park_path(@park), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+   </div>
+
+  <div class="col-md-7 border-left d-none d-md-block pl-md-4">
+     <h5>投稿一覧</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <% @posts.each do |post| %>
+                <div class="row no-gutters align-items-start border-top">
+                  <div class="col-md-5 mb-3 mb-md-0 pr-md-3">
+                      <%= image_tag post.get_image, class: "img-fluid rounded", style: "width:100px;height:100px;object-fit:cover;" %>
+                  </div>
+                  <div class="col-md-7"> 
+                  <%= link_to post.user.name, [:admin, post.user], class: "text-decoration-none" %>さん
+                    <small class="text-muted ml-2"> <%= post.created_at.strftime('%Y/%m/%d') %></small>
+                    <%=render 'public/posts/rating_show', post: post %>            
+                    <h3 class="h5 mb-0"><%= post.title %></h3> 
+                    <p class="text-secondary"><%= post.body %></p>
+                  </div>
+                </div>      
+              <% end %>
+            </li>
+          </ul>
+  </div>
 </div>

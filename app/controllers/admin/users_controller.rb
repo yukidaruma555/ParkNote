@@ -8,6 +8,8 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
+    @park = @user.parks
   end
 
   def destroy
