@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     root to: 'users#index'
     resources :users, only: [:index, :show, :destroy]
     resources :parks, only: [:index, :show, :edit, :update, :destroy]
+    resources :posts, only: [:destroy]
   end
 
   devise_for :users

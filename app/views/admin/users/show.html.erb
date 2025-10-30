@@ -3,7 +3,7 @@
     <h5><%= @user.name %>さんの会員詳細</h5>
       <p>会員ID: <%= @user.id %></p>
       <p>名前: <%= @user.name %></p>
-      <%= link_to '削除', admin_user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <%= button_to 'ユーザー削除', [:admin, @user], method: :delete, data: { confirm: '本当にユーザーを削除しますか？' }, class: "btn btn-sm btn-danger" %>
   </div>
   <div class="col-md-7 border-left d-none d-md-block pl-md-4">
      <h5>投稿一覧</h5>
@@ -20,6 +20,8 @@
                     <%=render 'public/posts/rating_show', post: post %>            
                     <h3 class="h5 mb-0"><%= post.title %></h3> 
                     <p class="text-secondary"><%= post.body %></p>
+                    <%= button_to '投稿削除', [:admin, post], method: :delete, data: { confirm: 'この投稿を削除しますか？' },
+                     form: { class: 'd-inline' }, class: 'btn btn-sm btn-outline-danger' %>
                   </div>
                 </div>      
               <% end %>
