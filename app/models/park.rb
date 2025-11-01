@@ -1,7 +1,7 @@
 class Park < ApplicationRecord
   has_one_attached :image
 
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :posts, dependent: :restrict_with_error
 
   has_many :park_equipments, dependent: :destroy

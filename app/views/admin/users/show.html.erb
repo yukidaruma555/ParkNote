@@ -1,10 +1,30 @@
 <div class="row">
   <div class="col-md-5">
-    <h5><%= @user.name %>さんの会員詳細</h5>
-      <p>会員ID: <%= @user.id %></p>
-      <p>名前: <%= @user.name %></p>
-      <%= button_to 'ユーザー削除', [:admin, @user], method: :delete, data: { confirm: '本当にユーザーを削除しますか？' }, class: "btn btn-sm btn-danger" %>
-  </div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5><%= @user.name %>さんの会員詳細</h5>
+        <%= button_to 'ユーザー削除', [:admin, @user], method: :delete, 
+            data: { confirm: '本当にユーザーを削除しますか？' }, class: "btn btn-sm btn-danger" %>
+    </div>
+      <%= image_tag @user.get_profile_image(100,100), class: "img-fluid rounded-circle mb-3",
+          style: "object-fit:cover;" %>     
+        <table class="table">
+          <tbody>
+           <tr>
+              <th>会員ID</th>
+              <td><%= @user.id %></td>
+            </tr>
+            <tr>
+            <tr>
+              <th>名前</th>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <th>email</th>
+              <td><%= @user.email %></td>
+            </tr>
+            </tbody>
+        </table>
+   </div>
   <div class="col-md-7 border-left d-none d-md-block pl-md-4">
      <h5>投稿一覧</h5>
         <ul class="list-group list-group-flush">
@@ -29,3 +49,6 @@
           </ul>
    </div>
 </div>
+  <div class="text-center mt-3">
+    <%= link_to "Back", admin_users_path, class: "font-weight-bold d-inline-block mt-3" %>
+  </div>
