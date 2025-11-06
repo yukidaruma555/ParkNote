@@ -1,19 +1,13 @@
-// ブートストラップ ローダ
-(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-  key: process.env.Maps_API_Key
-});
-
-
-// ライブラリの読み込み
 let map;
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   const {AdvancedMarkerElement} = await google.maps.importLibrary("marker") // 追記
 
-  map = new Map(document.getElementById("map"), {
+  const mapArea = document.getElementById("map")
+  map = new Map(mapArea, {
     center: { lat: 35.681236, lng: 139.767125 },
-    zoom: 15,
+    zoom: 8,
     mapId: "DEMO_MAP_ID", // 追記
     mapTypeControl: false
   });
@@ -26,18 +20,41 @@ async function initMap() {
     const { data: { items } } = await response.json();
     if (!Array.isArray(items)) throw new Error("Items is not an array");
 
-    items.forEach( item => {
+    const parkIds = JSON.parse(mapArea.dataset.parkIds)
+    const filterdItems = items.filter(o => parkIds.includes(o.id) )
+    filterdItems.forEach( item => {
       const latitude = item.latitude;
       const longitude = item.longitude;
-      const parkName = item.park_name;
+      const parkName = item.parkName;
+      const park_id = item.id;
+      const address = item.address;
+
       if (latitude !== 0 && longitude !== 0) {
-        const marker = new google.maps.marker.AdvancedMarkerElement ({
+        const marker = new google.maps.marker.AdvancedMarkerElement({
           position: { lat: latitude, lng: longitude },
           map,
           title: parkName,
           // 他の任意のオプションもここに追加可能
         });
         map.setCenter({lat: latitude, lng: longitude})
+
+        const infoWindow = new google.maps.InfoWindow({
+          position: marker.position,
+          pixelOffset: new google.maps.Size(0, -25),
+          content: `
+            <a href="/parks/${park_id}" data-turbolinks=false class="card d-block" style="text-decoration:none;color:#666;">
+              <div class="card-body">
+                <h3 class="text-decoration-none">${parkName}</h3>
+                <p class="text-decoration-none">${address}</p>
+              </div>
+            </a>
+          `
+        })
+        marker.addListener('click', (e) => {
+          console.log(e)
+          infoWindow.open(map)
+        })
+
       }
     });
   } catch (error) {
