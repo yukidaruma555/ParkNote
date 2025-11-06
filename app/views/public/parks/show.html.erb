@@ -17,7 +17,7 @@
             <%= image_tag post.user.get_profile_image(40,40), class: "rounded-circle mr-2" %>
             <div class="mr-auto">  
               <%= link_to post.user.name, user_path(post.user), class: "textt-decoration-none" %>さん
-              <small class="text-muted ml-2"> <%= post.created_at.strftime('%Y/%m/%d') %></small>
+              <small class="text-muted ml-2"> <%= l(post.created_at, format: :long) %></small>
             </div>
           </div>
           <div class="row no-gutters align-items-start">
