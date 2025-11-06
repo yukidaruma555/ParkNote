@@ -1,18 +1,19 @@
 <% if park.image.attached? %>
-  <%= image_tag park.image, class: "img-fluid mt-2" %>
+  <%= image_tag park.image, class: "rounded img-fluid mt-2" %>
 <% else %>
   <%= image_tag 'no_image_square', class: "img-fluid mt-2" %>
 <% end %>
 
-<table class="table">
+<table class="table" style="overflow-wrap:anywhere;">
   <tbody>
     <tr>
-      <th>公園名</th>
+      <th width="30%">公園名</th>
       <td><%= park.park_name %></td>
     </tr>
     <tr>
       <th>説明</th>
-      <td><%= park.introduction %></td>
+        <td>
+        <%= park.introduction %></td>
     </tr>
     <tr>
       <th>郵便番号</th>
