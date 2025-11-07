@@ -1,20 +1,19 @@
-<div class="container">
-  <div class="row">
-   <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-      <h3 class="text-center my-5">子供と行きたい公園が見つかる</h3>
-      
+<div class="container-fluid p-0">
+  <div class="d-flex flex-column align-items-center justify-content-center text-center text-white vh-100 position-relative"
+       style="background-image: url('<%= asset_path("park_image.jpeg") %>');
+              background-size: cover;
+              background-position: center;">
 
-      <div class="btn-wrapper col-10 mx-auto">
-          <div class="row">
-            <%= link_to "ゲストログイン", guest_login_path, method: :post, class: "btn btn-info btn-sm btn-block mb-3" %>
-          </div>
-          <div class="row">
-            <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
-          </div>
-          <div class="row">
-            <%= link_to "新規登録", new_user_registration_path, class:"btn btn-success btn-sm btn-block sign_up" %>
-          </div>
-      <div>
+   <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(255,255,255,0.15);"></div>
+     <div class="position-relative" style="z-index: 1;">       
+       <h2 class="fw-bold mb-4" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">子供と行きたい公園が見つかる</h2>
+       <h3 class="fw-bold mb-4" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">家族と、ペットと、笑顔になれる公園を探そう</h3>
+  
+     <div class="d-grid gap-3" style="max-width: 280px; margin: 0 auto;">         
+        <%= link_to "ゲストログイン", guest_login_path, method: :post, class: "btn btn-info btn-sm btn-block mb-3" %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+        <%= link_to "新規登録", new_user_registration_path, class:"btn btn-success btn-sm btn-block sign_up" %>      
     </div>
   </div>
+ </div>
 </div>
