@@ -1,33 +1,45 @@
 <div class="check_box" >
   <%= form_with url: parks_path, method: :get do |f| %>
-    <h4>・遊具で絞り込む</h4>
-    <% equipment_ids = params[:equipment_ids] %>
-    <div class="form-group">
-      <%= f.collection_check_boxes(:equipment_ids, Equipment.all, :id, :name) do |b| %>
-        <span class="m-1">
-          <%= b.label { b.check_box(checked: equipment_ids&.include?(b.value.to_s)) + b.text } %>
-        </span>
-      <% end %>
+    <div class="card">
+      <div class="card-body">
+        <h6 class="mb-3">・遊具で絞り込む</h6>
+        <% equipment_ids = params[:equipment_ids] %>
+        <div class="row">
+          <%= f.collection_check_boxes(:equipment_ids, Equipment.all, :id, :name) do |b| %>
+            <span class="m-1">
+              <%= b.label { b.check_box(checked: equipment_ids&.include?(b.value.to_s)) + b.text } %>
+            </span>
+          <% end %>
+        </div>
+     </div>
     </div>
-    <h4>・設備で絞り込む</h4>
-    <% facility_ids = params[:facility_ids] %>
-    <div class="form-group">
-      <%= f.collection_check_boxes(:facility_ids, Facility.all, :id, :name) do |b| %>
-        <span class="m-1">
-          <%= b.label { b.check_box(checked: facility_ids&.include?(b.value.to_s)) + b.text } %>
-        </span>
-      <% end %>
-    </div>
-    <h4>・年齢層で絞り込む</h4>
-    <% age_group_ids = params[:age_group_ids] %>
-    <div class="form-group">
-      <%= f.collection_check_boxes(:age_group_ids, AgeGroup.all, :id, :name) do |b| %>
-        <span class="m-1">
-          <%= b.label { b.check_box(checked: age_group_ids&.include?(b.value.to_s)) + b.text } %>
-        </span>
-      <% end %>
-    </div>
-    <div class="form-group">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="mb-3">・設備で絞り込む</h6>
+        <% facility_ids = params[:facility_ids] %>
+        <div class="row">
+          <%= f.collection_check_boxes(:facility_ids, Facility.all, :id, :name) do |b| %>
+            <span class="m-1">
+              <%= b.label { b.check_box(checked: facility_ids&.include?(b.value.to_s)) + b.text } %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+     </div> 
+     <div class="card">
+      <div class="card-body">
+        <h6 class="mb-3">・年齢層で絞り込む</h6>
+        <% age_group_ids = params[:age_group_ids] %>
+        <div class="row">
+          <%= f.collection_check_boxes(:age_group_ids, AgeGroup.all, :id, :name) do |b| %>
+            <span class="m-1">
+              <%= b.label { b.check_box(checked: age_group_ids&.include?(b.value.to_s)) + b.text } %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+     </div>
+    <div class="form-group text-right mt-2">
       <%= f.submit "この条件で絞り込む", class: "btn btn-primary" %>
     </div>
   <% end %>
