@@ -1,9 +1,81 @@
-<div class="row">
-  <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-    <h2 class="text-center my-5">子供と行きたい公園が見つかる</h2>
-    <p class="text-center my-4">今住んでいるところはもちろん</p>
-    <p class="text-center my-4">引っ越し先でも</p>
-    <p class="text-center my-4">旅行先でも</p>
-    <p class="text-center my-4">公園を探そう！見つけよう！</p>
+<section class="bg-light py-5">
+  <div class="container text-center">
+    <h1 class="display-5 font-weight-bold mb-3">ParkNoteについて</h1>
+    <p class="lead mb-0">家族と、ペットと。「安心して楽しめる公園」を見つけるためのサイトです。</p>
   </div>
-</div>
+</section>
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="shadow-sm rounded overflow-hidden about-frame">
+          <img src="<%= asset_path('park_image2.jpeg') %>" class="w-100 h-100 object-cover">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 class="font-weight-bold mb-3">公園選びを、もっとかんたんに</h3>
+        <ul class="list-unstyled mb-0">
+          <li class="mb-2">・写真とレビューで雰囲気が分かる</li>
+          <li class="mb-2">・遊具/年齢/トイレなどで絞り込み</li>
+          <li class="mb-2">・地図から比較</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-5 bg-light">
+  <div class="container">
+    <h3 class="text-center font-weight-bold mb-4">こんな人にぴったり</h3>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="<%= asset_path('park_image3.jpeg') %>" class="card-img-top object-cover h-200">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">子連れの保護者</h5>
+            <p class="card-text mb-0">安全面、遊具など“行って良かった”が分かる情報。</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="<%= asset_path('park_image4.jpeg') %>" class="card-img-top object-cover h-200">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">引っ越し・旅行先</h5>
+            <p class="card-text mb-0">土地勘がなくても、地図と写真で雰囲気が伝わる。</p>
+          </div>
+        </div>
+      </div>
+       <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="<%= asset_path('park_image5.jpeg') %>" class="card-img-top object-cover h-200">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">ペットオーナー</h5>
+            <p class="card-text mb-0">“散歩が楽しい”場所が見つかる。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-5 bg-light">
+  <div class="container">
+    <h3 class="text-center font-weight-bold mb-4">画面イメージ</h3>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="shadow-sm rounded overflow-hidden">
+          <img src="<%= asset_path('searche.png') %>" class="w-100 object-cover h-220">
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="shadow-sm rounded overflow-hidden">
+          <img src="<%= asset_path('park_index.png') %>" class="w-100 object-cover h-220">
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="shadow-sm rounded overflow-hidden">
+          <img src="<%= asset_path('user_show.png') %>" class="w-100 object-cover h-220">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
