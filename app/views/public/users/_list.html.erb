@@ -1,8 +1,7 @@
 <div class="mb-4">
   <div class="text-center">
-
     <%= image_tag @user.get_profile_image(100,100), class: "img-fluid rounded-circle mb-3", style: "object-fit:cover;" %>
-    <h5 class="card-title"><%= @user.name %></h5>
+   <h5 class="card-title"><%= @user.name %></h5>
     <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-primary btn-sm mt-2" %>
   </div>
 </div>
